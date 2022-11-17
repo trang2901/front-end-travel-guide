@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../LoginContext";
-
+import Avatar from '@mui/material/Avatar';
+import {Row, Col} from 'antd';
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import Stack from '@mui/material/Stack';
 import "./header.scss";
 const Header = () => {
   const [settingOpen, setSettingOpen] = useState(false);
@@ -29,7 +32,12 @@ const Header = () => {
           setMenuOn(false);
         }}
       >
-        {window.sessionStorage.getItem("guiderName")}
+         <Stack direction="row" spacing={2}>
+         <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+         <p style={{textAlign: 'center', fontSize: '15px'}}>{window.sessionStorage.getItem("guiderName")}</p>
+         </Stack>
+
+       
         {menuOn ? (
           <div className="setting">
             <ul className="setting--option">

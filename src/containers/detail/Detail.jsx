@@ -15,7 +15,7 @@ const Detail = () => {
   const [fileData, setFileData] = useState([]);
   useEffect(() => {
     axios(
-      `https://tour-api-dev.herokuapp.com/tour/${searchParams.get("slug")}`
+      `https://tourapi-dev-n.herokuapp.com/tour/${searchParams.get("slug")}`
     ).then(({ data }) => {
       setProcessData(data.lich_trinh);
       setFileData(data.du_khach);

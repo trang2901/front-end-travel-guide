@@ -5,17 +5,24 @@
   justify-content: flex-end;
   align-items: center;
   border-bottom: 1px solid black;
+  background-color: #08183c;
+  color: #f97150;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .icon {
+  // width: 70%;
   z-index:2;
   position: relative;
   padding: 1rem;
   margin-right: 2rem;
+  width: 400px;
   cursor: pointer;
   .setting {
     position: absolute;
-    width: 160px;
+    width: 200px;
     left: 50%;
     transform: translateX(-90%);
 

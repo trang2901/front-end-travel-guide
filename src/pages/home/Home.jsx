@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { Header, SideBar, FooterNav } from "../../containers";
+import { Header,SideBar, FooterNav } from "../../containers";
+// import { Header} from "../../components";
 import axios from "axios";
 import { LoginContext } from "../../LoginContext";
 import { TourDataContext } from "./TourDataContext.js";
@@ -16,14 +17,14 @@ const Home = () => {
 
   const fetchTourSlug = () => {
     const fetchDataTour = (slug) => {
-      axios(`https://tour-api-dev.herokuapp.com/tour/${slug}`).then(
+      axios(`https://tourapi-dev-n.herokuapp.com/tour/${slug}`).then(
         ({ data }) => {
           setdataTour(data);
         }
       );
     };
 
-    axios(`https://tour-api-dev.herokuapp.com/huongdanvien/${guiderID}`).then(
+    axios(`https://tourapi-dev-n.herokuapp.com/huongdanvien/${guiderID}`).then(
       ({ data }) => {
         tourSlug = data.tour_hd[0].slug;
         fetchDataTour(tourSlug);

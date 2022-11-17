@@ -21,7 +21,7 @@ const Place = ({ data, status, proccessData, index }) => {
 
   useEffect(() => {
     axios(
-      `https://tour-api-dev.herokuapp.com/tour/${searchParams.get("slug")}`
+      `https://tourapi-dev-n.herokuapp.com/tour/${searchParams.get("slug")}`
     ).then(({ data }) => setTourID(data["_id"]));
   }, []);
 
@@ -55,7 +55,7 @@ const Place = ({ data, status, proccessData, index }) => {
     if (statusState === "Chưa hoàn thành") {
       axios
         .put(
-          `https://tour-api-dev.herokuapp.com/lichtrinh/${proccessData[index]["_id"]}`,
+          `https://tourapi-dev-n.herokuapp.com/lichtrinh/${proccessData[index]["_id"]}`,
           {
             trang_thai: "Đang đến",
           }
@@ -65,7 +65,7 @@ const Place = ({ data, status, proccessData, index }) => {
     if (statusState === "Đang đến") {
       axios
         .put(
-          `https://tour-api-dev.herokuapp.com/lichtrinh/${proccessData[index]["_id"]}`,
+          `https://tourapi-dev-n.herokuapp.com/lichtrinh/${proccessData[index]["_id"]}`,
           {
             trang_thai: "Đã tham quan",
           }
@@ -86,7 +86,7 @@ const Place = ({ data, status, proccessData, index }) => {
     <>
       <div className="place--container" onClick={handleClickOpen}>
         <div className="place--img">
-          <img src={`https://tour-api-dev.herokuapp.com${data.hinh}`} />
+          <img src={`https://tourapi-dev-n.herokuapp.com/${data.hinh}`} />
         </div>
         <div className="place--information">
           <h1>{data.ten}</h1>
