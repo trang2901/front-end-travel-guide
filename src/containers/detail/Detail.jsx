@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
-
+import { Tabs } from "antd";
 import { ArrowBack } from "@mui/icons-material";
 import "./detail.scss";
 const Detail = () => {
@@ -51,6 +51,7 @@ const Detail = () => {
           </>
         )}
       </div>
+      
       <div className="content">
         {proccessOn ? (
           <Process processData={processData} setProcessData={setProcessData} />
@@ -58,6 +59,15 @@ const Detail = () => {
           <File fileData={fileData} />
         )}
       </div>
+
+      {/* <Tabs defaultActiveKey="1">
+        <Tabs.TabPane tab="Tab 1" key="1">
+          <Process processData={processData} setProcessData={setProcessData} />
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="Tab 2" key="2">
+          <File fileData={fileData} />
+        </Tabs.TabPane>
+      </Tabs> */}
     </div>
   );
 };

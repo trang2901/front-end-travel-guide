@@ -14,7 +14,8 @@ const File = ({ fileData }) => {
     customer.ho_ten.toLowerCase().includes(inputSearch.toLowerCase())
   );
 
-  return (
+  return ( 
+    <>
     <div className="file">
       <TextField
         type="text"
@@ -38,6 +39,31 @@ const File = ({ fileData }) => {
         />
       )}
     </div>
+
+    {/* <div className="file">
+      <TextField
+        type="text"
+        onChange={customerSearch}
+        placeholder="Nhập tên khách hàng (có dấu)"
+        sx={{ width: "100%", margin: "2rem 0 1rem 0" }}
+      />
+      {inputSearch ? (
+        <Table
+          tableLabel="Khách hàng"
+          customer="customer--table"
+          tableHeading={customerHeading}
+          tableData={searchedData}
+        />
+      ) : (
+        <Table
+          tableLabel="Khách hàng"
+          customer="customer--table"
+          tableHeading={customerHeading}
+          tableData={fileData}
+        />
+      )}
+    </div> */}
+    </>
   );
 };
 

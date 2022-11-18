@@ -3,7 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { TextField, Button } from "@mui/material";
 import "./login.scss";
-
+import { Container } from "@mui/system";
 const Login = () => {
   // const [isSubmit, setIsSubmit] = useState(false);
   const createLoginRequest = (values) => {
@@ -75,8 +75,8 @@ const Login = () => {
 
 
     </div> */}
-
-<div className="container">
+<Container>
+<div className="container1">
 	<div className="screen">
 		<div className="screen__content">
 			<form className="login" onSubmit={formik.handleSubmit}>
@@ -84,7 +84,7 @@ const Login = () => {
 					<i className="login__icon fas fa-user"></i>
 					<input type="text" 
           className="login__input" 
-          placeholder="User name / Email"
+          placeholder="Tên đăng nhập"
           id="username"
           name="username"
           onChange={formik.handleChange}
@@ -95,7 +95,7 @@ const Login = () => {
 					<i className="login__icon fas fa-lock"></i>
 					<input type="password" 
           className="login__input" 
-          placeholder="Password"
+          placeholder="Mật khẩu"
           id="password"
           name="password"
           onChange={formik.handleChange}
@@ -104,14 +104,14 @@ const Login = () => {
 				</div>
       
 				<button className="button login__submit">
-					<span className="button__text" type="submit">Log In Now</span>
+					<span className="button__text" type="submit">Đăng nhập ngay</span>
 					<i className="button__icon fas fa-chevron-right"></i>
 				</button>	
 
 
 			</form>
 			<div className="social-login">
-				<h3>log in via</h3>
+				<h3>HƯỚNG DẪN VIÊN</h3>
 				<div className="social-icons">
 					<a href="#" className="social-login__icon fab fa-instagram"></a>
 					<a href="#" className="social-login__icon fab fa-facebook"></a>
@@ -127,7 +127,9 @@ const Login = () => {
 		</div>		
 	</div>
 </div>
+</Container>
 </>
+
   );
 };
 

@@ -33,9 +33,11 @@ const Table = ({ tableLabel, customer, tableHeading, tableData }) => {
             ))}
           </tr>
         </thead>
+
         <tbody>
           {customer
             ? tableData?.map((data, index) => (
+
                 <tr id={data.id} data-id={data.id}>
                   <td onClick={handleTrClick}>
                     <p>{index+1}</p>
@@ -63,6 +65,8 @@ const Table = ({ tableLabel, customer, tableHeading, tableData }) => {
               ))}
         </tbody>
       </table>
+
+
     </div>
   );
 };

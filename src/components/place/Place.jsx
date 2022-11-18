@@ -7,9 +7,10 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-
+import { Container } from "@mui/system";
 import "./place.scss";
 import axios from "axios";
+import moment from "moment/moment";
 const Place = ({ data, status, proccessData, index }) => {
   const [open, setOpen] = useState(false);
   const [statusState, setStatusState] = useState(status);
@@ -81,10 +82,9 @@ const Place = ({ data, status, proccessData, index }) => {
       return <small className={`status going`}>{statusState}</small>;
     else return <small className={`status wait`}>{statusState}</small>;
   };
-
   return (
-    <>
-      <div className="place--container" onClick={handleClickOpen}>
+<>
+      {/* <div className="place--container" onClick={handleClickOpen}>
         <div className="place--img">
           <img src={`https://tourapi-dev-n.herokuapp.com/${data.hinh}`} />
         </div>
@@ -93,6 +93,7 @@ const Place = ({ data, status, proccessData, index }) => {
           {renderStatusLabel()}
         </div>
       </div>
+
       <div>
         <Dialog
           scroll="paper"
@@ -122,9 +123,72 @@ const Place = ({ data, status, proccessData, index }) => {
             <Button onClick={handleClose}>Thoát</Button>
           </DialogActions>
         </Dialog>
+      </div> */}
+<Container>
+<div className="container">
+<div className="row" onClick={handleClickOpen}>
+<div className="col-md-8">
+	<div className="chat_container">
+		<div className="job-box">
+			<div className="inbox-message">
+				<ul>
+					<li>
+						<a href="#">
+							<div className="message-avatar">
+              <img src={`https://tourapi-dev-n.herokuapp.com/${data.hinh}`} />
+							</div>
+
+							<div className="message-body">
+								<div className="message-body-heading">
+									<h5>{data.ten}<span className={statusState === "Đang đến" ? 'important':'unread'}>{renderStatusLabel()}</span></h5>
+									<span>{statusState === "Đang đến" ? '': moment().get('minute')}</span>
+								</div>
+								<p style={{color: '#08183c', fontSize: '15px'}}>{data.mo_ta.slice(0,280)}...</p>
+							</div>
+
+						</a>
+					</li>		
+				</ul>
+			</div>
+      
+		</div>
+	</div>
+</div>
+</div>
+<div>
+        <Dialog
+          scroll="paper"
+          fullWidth="100%"
+          maxWidth="lg"
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle
+            id="alert-dialog-title"
+            inputProps={{ index: index }}
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            {`Địa điểm: ${data.ten}`}
+            {renderButton()}
+          </DialogTitle>
+          <DialogContent dividers={true}>
+            <div className="overFlow">
+              <h1>Thông tin địa điểm</h1>
+              <p>{data.mo_ta}</p>
+              <h1>Gợi ý tham quan</h1>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Thoát</Button>
+          </DialogActions>
+        </Dialog>
       </div>
-    </>
-  );
+</div>
+</Container>
+</>
+);
 };
 
 export default Place;
