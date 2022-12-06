@@ -17,14 +17,14 @@ const Home = () => {
 
   const fetchTourSlug = () => {
     const fetchDataTour = (slug) => {
-      axios(`https://tourapi-dev-n.herokuapp.com/tour/${slug}`).then(
+      axios(`http://localhost:3001/tour/${slug}`).then(
         ({ data }) => {
           setdataTour(data);
         }
       );
     };
 
-    axios(`https://tourapi-dev-n.herokuapp.com/huongdanvien/${guiderID}`).then(
+    axios(`http://localhost:3001/huongdanvien/${guiderID}`).then(
       ({ data }) => {
         tourSlug = data.tour_hd[0].slug;
         fetchDataTour(tourSlug);

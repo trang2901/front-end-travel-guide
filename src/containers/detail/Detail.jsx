@@ -5,17 +5,18 @@ import { useSearchParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { Tabs } from "antd";
+import { Container } from "@mui/system";
 import { ArrowBack } from "@mui/icons-material";
+import Paper from '@mui/material/Paper';
 import "./detail.scss";
 const Detail = () => {
   const [proccessOn, setProccessOn] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const [processData, setProcessData] = useState([]);
-
   const [fileData, setFileData] = useState([]);
   useEffect(() => {
     axios(
-      `https://tourapi-dev-n.herokuapp.com/tour/${searchParams.get("slug")}`
+      `http://localhost:3001/tour/${searchParams.get("slug")}`
     ).then(({ data }) => {
       setProcessData(data.lich_trinh);
       setFileData(data.du_khach);
@@ -25,29 +26,31 @@ const Detail = () => {
   const navigate = useNavigate();
 
   return (
+    <Container>
     <div className="detail">
       <Button
         variant="outlined"
         onClick={() => navigate("/")}
-        style={{ position: "absolute", left: 0 }}
+        style={{ position: "absolute", left: 0, color: 'green', borderColor: 'green' }}
       >
         {<ArrowBack />}
         Trở về
-      </Button>
+  </Button>
+
       <div className="btn--group">
         {proccessOn ? (
           <>
-            <Button variant="contained">Địa điểm</Button>
-            <Button variant="outlined" onClick={() => setProccessOn(false)}>
+            <Button variant="outlined" style={{color: '#08183c', borderColor: '#08183c'}}>Địa điểm</Button>
+            <Button  onClick={() => setProccessOn(false)} style={{color: '#08183c'}}>
               Du khách
             </Button>
           </>
         ) : (
           <>
-            <Button variant="outlined" onClick={() => setProccessOn(true)}>
+            <Button  onClick={() => setProccessOn(true)} style={{color: '#08183c'}}>
               Địa điểm
             </Button>
-            <Button variant="contained">Du khách</Button>
+            <Button variant="outlined" style={{color: '#08183c', borderColor: '#08183c'}}>Du khách</Button>
           </>
         )}
       </div>
@@ -55,20 +58,16 @@ const Detail = () => {
       <div className="content">
         {proccessOn ? (
           <Process processData={processData} setProcessData={setProcessData} />
-        ) : (
+        ) 
+        : 
+        (
           <File fileData={fileData} />
         )}
       </div>
-
-      {/* <Tabs defaultActiveKey="1">
-        <Tabs.TabPane tab="Tab 1" key="1">
-          <Process processData={processData} setProcessData={setProcessData} />
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="Tab 2" key="2">
-          <File fileData={fileData} />
-        </Tabs.TabPane>
-      </Tabs> */}
+   
     </div>
+    
+    </Container>
   );
 };
 

@@ -20,15 +20,17 @@ const Table = ({ tableLabel, customer, tableHeading, tableData }) => {
 
       <table style={{ width: "100%" }} className={customer}>
         <colgroup>
-          <col span="1" style={{ width: "15%" }} />
-          <col span="1" style={{ width: "45%" }} />
-          <col span="1" style={{ width: "50%" }} />
+          <col span="1" style={{ width: "10%" }} />
+          <col span="1" style={{ width: "25%" }} />
+          <col span="1" style={{ width: "30%" }} />
+          <col span="1" style={{ width: "10%" }} />
+          <col span="1" style={{ width: "25%"}} />
         </colgroup>
         <thead>
           <tr>
             {tableHeading?.map((heading) => (
               <th>
-                <h3>{heading}</h3>
+                <p style={{color: '#f97150', textTransform: 'uppercase' }}>{heading}</p>
               </th>
             ))}
           </tr>
@@ -37,8 +39,8 @@ const Table = ({ tableLabel, customer, tableHeading, tableData }) => {
         <tbody>
           {customer
             ? tableData?.map((data, index) => (
-
-                <tr id={data.id} data-id={data.id}>
+                // <div className="table--t">
+                <tr id={data.id} data-id={data.id} style={{border: '1px solid grey'}}>
                   <td onClick={handleTrClick}>
                     <p>{index+1}</p>
                   </td>
@@ -48,9 +50,17 @@ const Table = ({ tableLabel, customer, tableHeading, tableData }) => {
                   <td onClick={handleTrClick}>
                     <p>{data.sdt}</p>
                   </td>
+                  <td>
+                    <p>{data.tuoi}</p>
+                  </td>
+                  <td>
+                    <p>{data.so_cmnd}</p>
+                  </td>
                 </tr>
+                // </div>
               ))
             : tableData?.map((data) => (
+              <div className="table--s">
                 <tr>
                   <td>
                     <p>{data.role}</p>
@@ -61,7 +71,14 @@ const Table = ({ tableLabel, customer, tableHeading, tableData }) => {
                   <td>
                     <p>{data.sdt}</p>
                   </td>
+                  <td>
+                    <p>{data.tuoi}</p>
+                  </td>
+                  <td>
+                    <p>{data.so_cmnd}</p>
+                  </td>
                 </tr>
+                </div>
               ))}
         </tbody>
       </table>

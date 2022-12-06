@@ -11,7 +11,7 @@ const Header = () => {
   const [menuOn, setMenuOn] = useState(false);
   const guiderID = useContext(LoginContext);
   const settingOptions = [
-    { id: "home/detail", label: "Chi tiết", function: () => {} },
+    { id: "home/detail", label: "Tour phụ trách", function: () => {} },
     {
       id: "login",
       label: "Đăng xuất",

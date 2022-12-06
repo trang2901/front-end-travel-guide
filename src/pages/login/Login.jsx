@@ -9,7 +9,7 @@ const Login = () => {
   const createLoginRequest = (values) => {
     const getGuiderID = (accountID) => {
       axios
-        .get("https://tourapi-dev-n.herokuapp.com/huongdanvien")
+        .get("http://localhost:3001/huongdanvien")
         .then(({ data }) => {
          
           const Data = data.find(
@@ -23,7 +23,7 @@ const Login = () => {
         });
     };
 
-    axios(`https://tourapi-dev-n.herokuapp.com/taikhoan/${values.username}`)
+    axios(`http://localhost:3001/taikhoan/${values.username}`)
       .then(({ data }) => {
         console.log(data);
         if (data == null) alert("Tài khoản hoặc mật khẩu không đúng");
@@ -81,7 +81,6 @@ const Login = () => {
 		<div className="screen__content">
 			<form className="login" onSubmit={formik.handleSubmit}>
 				<div className="login__field">
-					<i className="login__icon fas fa-user"></i>
 					<input type="text" 
           className="login__input" 
           placeholder="Tên đăng nhập"
@@ -92,7 +91,6 @@ const Login = () => {
           />
 				</div>
 				<div className="login__field">
-					<i className="login__icon fas fa-lock"></i>
 					<input type="password" 
           className="login__input" 
           placeholder="Mật khẩu"
@@ -105,18 +103,14 @@ const Login = () => {
       
 				<button className="button login__submit">
 					<span className="button__text" type="submit">Đăng nhập ngay</span>
-					<i className="button__icon fas fa-chevron-right"></i>
+					
 				</button>	
 
 
 			</form>
 			<div className="social-login">
-				<h3>HƯỚNG DẪN VIÊN</h3>
-				<div className="social-icons">
-					<a href="#" className="social-login__icon fab fa-instagram"></a>
-					<a href="#" className="social-login__icon fab fa-facebook"></a>
-					<a href="#" className="social-login__icon fab fa-twitter"></a>
-				</div>
+				<h3 style={{textAlign: 'center', color: '#08183c'}}>HƯỚNG DẪN VIÊN</h3>
+			
 			</div>
 		</div>
 		<div className="screen__background">

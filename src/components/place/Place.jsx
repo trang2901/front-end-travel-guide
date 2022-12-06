@@ -16,31 +16,33 @@ const Place = ({ data, status, proccessData, index }) => {
   const [statusState, setStatusState] = useState(status);
   const [tourID, setTourID] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+  const yourdate = new Date();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   useEffect(() => {
     axios(
-      `https://tourapi-dev-n.herokuapp.com/tour/${searchParams.get("slug")}`
+      `http://localhost:3001/tour/${searchParams.get("slug")}`
     ).then(({ data }) => setTourID(data["_id"]));
   }, []);
 
   const handleClose = () => {
     setOpen(false);
   };
-
+  
   const renderButton = () => {
     if (statusState === "Đang đến")
       return (
-        <Button color="primary" variant="outlined" onClick={changeState}>
+        <Button color="primary" variant="outlined" onClick={changeState} style={{borderRadius: '80px', backgroundColor: 'red', color: 'white', border: 'none'}}>
           {statusState}
         </Button>
       );
 
     if (statusState === "Đã tham quan")
       return (
-        <Button color="success" variant="contained">
+        <Button color="success" variant="contained" style={{borderRadius: '80px', backgroundColor: 'green', color: 'white', border: 'none'}}>
           {statusState}
         </Button>
       );
@@ -56,7 +58,7 @@ const Place = ({ data, status, proccessData, index }) => {
     if (statusState === "Chưa hoàn thành") {
       axios
         .put(
-          `https://tourapi-dev-n.herokuapp.com/lichtrinh/${proccessData[index]["_id"]}`,
+          `http://localhost:3001/lichtrinh/${proccessData[index]["_id"]}`,
           {
             trang_thai: "Đang đến",
           }
@@ -66,7 +68,7 @@ const Place = ({ data, status, proccessData, index }) => {
     if (statusState === "Đang đến") {
       axios
         .put(
-          `https://tourapi-dev-n.herokuapp.com/lichtrinh/${proccessData[index]["_id"]}`,
+          `http://localhost:3001/lichtrinh/${proccessData[index]["_id"]}`,
           {
             trang_thai: "Đã tham quan",
           }
@@ -135,13 +137,14 @@ const Place = ({ data, status, proccessData, index }) => {
 					<li>
 						<a href="#">
 							<div className="message-avatar">
-              <img src={`https://tourapi-dev-n.herokuapp.com/${data.hinh}`} />
+              <img src={`http://localhost:3001/${data.hinh}`} />
 							</div>
 
 							<div className="message-body">
 								<div className="message-body-heading">
 									<h5>{data.ten}<span className={statusState === "Đang đến" ? 'important':'unread'}>{renderStatusLabel()}</span></h5>
-									<span>{statusState === "Đang đến" ? '': moment().get('minute')}</span>
+								
+                  
 								</div>
 								<p style={{color: '#08183c', fontSize: '15px'}}>{data.mo_ta.slice(0,280)}...</p>
 							</div>
@@ -170,14 +173,14 @@ const Place = ({ data, status, proccessData, index }) => {
             inputProps={{ index: index }}
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            {`Địa điểm: ${data.ten}`}
+           <p style={{textTransform: 'uppercase'}}>Địa điểm:<label style={{color: 'red', fontWeight: 'bold'}}>{` ${data.ten}`}</label></p> 
             {renderButton()}
           </DialogTitle>
           <DialogContent dividers={true}>
             <div className="overFlow">
               <h1>Thông tin địa điểm</h1>
               <p>{data.mo_ta}</p>
-              <h1>Gợi ý tham quan</h1>
+              {/* <h1>Gợi ý tham quan</h1> */}
             </div>
           </DialogContent>
           <DialogActions>
